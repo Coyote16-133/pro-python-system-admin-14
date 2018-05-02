@@ -3,7 +3,7 @@
 from jinja2 import Environment, FileSystemLoader
 from ConfigParser import SafeConfigParser
 import rrdtool
-import sys
+import sys,time
 
 WEBSITE_ROOT = '/home/rytis/public_html/snmp-monitor/'
 
@@ -47,6 +47,13 @@ def generate_website(conf_file="", website_root=WEBSITE_ROOT):
     generate_index(systems, env, website_root)
     for system in systems.values():
         generate_details(system, env, website_root)
+    cont =1	
+	while True:
+		time.sleep(5)		
+		generate_index(systems, env, website_root)
+		generate_details(system, env, website_root)
+		print("Numeracion : ", cont)
+		cont=cont+1
 
 
 if __name__ == '__main__':
