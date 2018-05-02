@@ -76,6 +76,12 @@ def main(conf_file=""):
                                config.get(check, 'system'),
                                config.get(check, 'sampling_rate'))
     snmp_manager.query_all_systems()
+    cont = 1
+	while True:
+		time.sleep(1)
+		snmp_manager.query_all_systems()
+		print("Numeracion: ", cont)
+		cont=cont+1
 
 if __name__ == '__main__':
     main(conf_file='snmp-manager.cfg')
